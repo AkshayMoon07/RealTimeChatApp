@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet,FlatList } from 'react-native';
 import ChatListItem from '../chatListItem';
-
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-
+import ChatRooms from '../data/ChatRooms';
+import chatRoom from '../data/ChatRooms'
+  
 export default function ChatScreen() {
   return (
     <View style={styles.container}>
-      <ChatListItem chatRoom ={{lastMessage :{content : "Changed?"}}}/>
+      <FlatList style={{width:'100%'}}
+      data={chatRoom}
+      renderItem={({item}) =><ChatListItem chatRoom ={item} />}
+      keyExtractor={(item) => item.id}
+      />
   
     </View>
   );
